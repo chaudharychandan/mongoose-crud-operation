@@ -15,12 +15,12 @@ beforeEach((done) => {
   //Invokes done callback function once drop operation completes
   mongoose.connection.collections.users.drop(() => {
     done();
-  })
+  });
 });
 
 after((done) => {
   //Close database connection
   mongoose.connection.close(() => {
     done();
-  })
+  });
 });
