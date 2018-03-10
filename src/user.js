@@ -14,8 +14,12 @@ const UserSchema = new Schema({
       message: constants.nameMinLengthMesssage
     }
   },
-  postCount: Number,
-  posts: [PostSchema]
+  posts: [PostSchema],
+  likes: Number
+});
+
+UserSchema.virtual('postCount').get(function() {
+  return this.posts.length;
 });
 
 const User = mongoose.model('user', UserSchema);
