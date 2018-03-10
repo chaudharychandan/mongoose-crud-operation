@@ -11,10 +11,13 @@ before((done) => {
 
 //Runs before every test case
 beforeEach((done) => {
-  //Drops users collection before every it block
-  //Invokes done callback function once drop operation completes
-  mongoose.connection.collections.users.drop(() => {
-    done();
+  const { users, comments, blogposts } = mongoose.connection.collections;
+  users.drop(() => {
+    comments.drop(() => {
+      blogposts.drop(() => {
+        done();
+      });
+    });
   });
 });
 
